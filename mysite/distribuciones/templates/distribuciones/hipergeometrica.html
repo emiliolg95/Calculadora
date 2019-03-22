@@ -1,0 +1,74 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+<title>Calculadora de Distribución Hipergeométrica</title>
+{% endblock %}
+
+<h1>Distribución Hipergeométrica</h1>
+
+{% block formula %}
+<var>h(x;n;k;N)</var> =
+<div class="fraction">
+    <span class="fup">
+        <i><sub>k</sub>C<sub>x</sub></i> •
+        <i><sub>(N-k)</sub>C<sub>(n-x)</sub></i>
+    </span>
+    <span class="bar">/</span>
+    <span class="fdn"><i><sub>N</sub>C<sub>n</sub></i></span>
+</div>
+{% endblock %}
+
+{% block formsgroups %}
+<div class="form-group row ">
+    <label for="lax" class="col-form-label"><strong><var>x</var></strong> =</label>
+    <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" name="valorx" id="lax"
+            placeholder="coloca el valor de x" value="{{request.form.valorx}}" min="0" required>
+        <small id="valordex" class="text-muted">
+            Si "x" tiene más de un valor, separalas por comas(,)
+        </small>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="lan" class="col-form-label"><strong><var>n</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorn" id="lan"
+            placeholder="coloca el valor de n" value="{{request.form.valorn}}" min="0" required>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="lak" class="col-form-label"><strong><var>k</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valork" id="lak"
+            placeholder="coloca el valor de k" value="{{request.form.valork}}" min="0" required>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="laN" class="col-form-label"><strong><var>N</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorN" id="laN"
+            placeholder="coloca el valor de N" value="{{request.form.valorN}}" min="0" required>
+    </div>
+</div>
+{% endblock %}
+
+{% block tablas %}
+{% for ros in l2 %}
+<tr>
+    <th scope="row">
+        <var>h({{ ros[0] }};{{ valorn }};{{ valork }};{{ valorN }})</var> =
+        <div class="fraction">
+            <span class="fup">
+                <i><sub>{{ valork }}</sub>C<sub>{{ ros[0] }}</sub></i> •
+                <i><sub>({{ valorNk }})</sub>C<sub>({{ ros[3] }})</sub></i>
+            </span>
+            <span class="bar">/</span>
+            <span class="fdn"><i><sub>{{ valorN }}</sub>C<sub>{{ valorn }}</sub></i></span>
+        </div>
+    </th>
+    <td>
+        <strong>R = <var>{{ ros[1] }}</var> = <var>{{ ros[2] }}</var>%
+    </td>
+</tr>
+{% endfor %}
+{% endblock %}

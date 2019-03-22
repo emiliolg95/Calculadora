@@ -1,0 +1,64 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+<title>Calculadora de Distribución Poisson</title>
+{% endblock %}
+
+<h1>Distribución Poisson</h1>
+
+{% block formula %}
+<var>p(x;&lambda;)</var> =
+<div class="fraction">
+    <span class="fup">
+        <i>&lambda;<sup>x</sup> • e<sup>-&lambda;</sup></i>
+    </span>
+    <span class="bar">/</span>
+    <span class="fdn">
+        <i>k!</i>
+    </span>
+</div>
+{% endblock %}
+
+{% block formsgroups %}
+<div class="form-group row ">
+    <label for="lax" class="col-form-label"><strong><var>x</var></strong> =</label>
+    <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" name="valorx" id="lax"
+            placeholder="coloca el valor de x" value="{{request.form.valorx}}" min="0" required>
+        <small id="valordex" class="text-muted">
+            Si "x" tiene más de un valor, separarlas por comas(,)
+        </small>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="lala" class="col-form-label"><strong><var></var>&lambda;</strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorla" id="lala"
+            placeholder="coloca el valor de lambda" value="{{request.form.valorla}}" min="0" required>
+    </div>
+</div>
+{% endblock %}
+
+{% block tablas %}
+{% for ros in l2 %}
+<tr>
+    <th scope="row">
+        <var>p({{ ros[0] }}; {{ valorla }})</var> =
+        <div class="fraction">
+            <span class="fup">
+                <i>{{ valorla }}<sup>{{ ros[0] }}</sup> • e<sup>-{{ valorla }}</sup></i>
+            </span>
+            <span class="bar">/</span>
+            <span class="fdn">
+                <i>{{ ros[0] }}!</i>
+            </span>
+        </div>
+    </th>
+    <td>
+        <strong>R</strong>= <var>{{ ros[1] }}</var> = <var>{{ ros[2] }}</var>%
+    </td>
+</tr>
+{% endfor %}
+{% endblock %}
+
+

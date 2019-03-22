@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body text-center">
+        <h4 class="card-title">Fórmula</h4>
+
+        <div id="formula">
+            {% block formula %}
+            {% endblock %}
+        </div>
+
+        <form class="p-5" method="POST" action="">
+            {% block formsgroups %}
+            {% endblock %}
+            <button type="submit" class="btn btn-primary">Calcular</button>
+        </form>
+
+        {% if conta==1 %}
+        <div class="content-box">
+            <h4 class="card-title">Resultado</h4>
+            <div id="formula">
+                <table class="table table-striped table-info">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fórmula</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% block tablas %}
+                        {% endblock %}
+                    </tbody>
+                </table>
+                {% if total>=2 %}
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-primary">
+                        <strong>P(X={{ varx }}) </strong>=
+                        {% for cr in le %}
+                        {{ cr }}
+                        {% endfor %}
+                        = <var>{{ i2 }}</var> 
+                        = <var>{{ i3 }}</var>%
+                    </li>
+                </ul>
+                {% endif %}
+
+            </div>
+            <br>
+            <!--<strong>R = </strong><sup>1</sup>&frasl;<sub>{{ resultado }}</sub> = <var>{{ porcentaje }}</var> % -->
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

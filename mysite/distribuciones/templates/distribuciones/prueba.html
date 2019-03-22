@@ -1,0 +1,63 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+<title>Calculadora de Distribución Binomial</title>
+{% endblock %}
+
+
+{% block formula %}
+<var>B(x;n;p)</var> =
+<i><sub>n</sub>C<sub>x</sub></i> •
+<i>p<sup>x</sup></i> •
+<i>q<sup>(n-x)</sup></i>
+{% endblock %}
+
+{% block formsgroups %}
+<div class="form-group row ">
+    <label for="lax" class="col-form-label"><strong><var>x</var></strong> =</label>
+    <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" name="valorx" id="lax"
+            placeholder="coloca el valor de x" value="{{request.form.valorx}}" min="0" required>
+        <small id="valordex" class="text-muted">
+            Si "x" tiene más de un valor, separalas por comas(,)
+        </small>
+    </div>
+</div>
+<div class="form-group row ">
+    <label for="lan" class="col-form-label"><strong><var>n</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorn" id="lan"
+            placeholder="coloca el valor de n" value="{{request.form.valorn}}" min="0" required>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="lap" class="col-form-label"><strong><var>p</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorp" id="lap"
+            placeholder="coloca el valor de p" value="{{request.form.valorp}}" step="any" min="0" required>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="laq" class="col-form-label"><strong><var>q</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorq" id="laq"
+            placeholder="coloca el valor de q" value="{{request.form.valorq}}" step="any" min="0" required>
+    </div>
+</div>
+{% endblock %}
+
+{% block tablas %}
+{% for ros in l2 %}
+<tr>
+    <th scope="row">
+        <var>B({{ ros[0] }};{{ valorn }};{{ valorp }})</var> =
+        <i><sub>{{ valorn }}</sub>C<sub>{{ ros[0] }}</sub></i> •
+        <i>{{ valorp }}<sup>{{ ros[0] }}</sup></i> •
+        <i>{{ valorq }}<sup>({{ ros[3] }})</sup></i>
+    </th>
+    <td>
+        <strong>R = <var>{{ ros[1] }}</var> = <var>{{ ros[2] }}</var> %
+    </td>
+</tr>
+{% endfor %}
+{% endblock %}

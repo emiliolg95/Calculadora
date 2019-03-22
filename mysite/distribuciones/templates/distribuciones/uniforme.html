@@ -1,0 +1,46 @@
+{% extends "layout2.html" %}
+
+{% block title %}
+<title>Calculadora de Distribución Uniforme</title>
+{% endblock %}
+
+<h1>Distribución Uniforme</h1>
+
+{% block formula %}
+<var>P(x)</var> =
+<div class="fraction">
+    <span class="fup"><i>1</i></span>
+    <span class="bar">/</span>
+    <span class="fdn"><i>n</i></span>
+</div>
+{% endblock %}
+
+{% block formsgroups %}
+<div class="form-group row">
+    <label for="lan" class="col-form-label"><strong><var>n</var></strong> =</label>
+    <div class="col-sm-3">
+        <input class="form-control form-control-sm" type="number" name="valorn" id="lan"
+            placeholder="coloca el valor de n" value="{{request.form.valorn}}" min="1" required>
+    </div>
+</div>
+{% endblock %}
+
+{% block tablas %}
+<tr>
+    <th scope="row">
+            <var>P(x)</var> =
+            <div class="fraction">
+                <span class="fup"><i>1</i></span>
+                <span class="bar">/</span>
+                <span class="fdn"><i>{{ resultado }}</i></span>
+            </div>
+    </th>
+    <td>
+        <strong>R = <div class="fraction">
+                <span class="fup"><i>1</i></span>
+                <span class="bar">/</span>
+                <span class="fdn"><i>{{ resultado }}</i></span>
+            </div> = <var>{{ porcentaje }}</var>%
+    </td>
+</tr>
+{% endblock %}

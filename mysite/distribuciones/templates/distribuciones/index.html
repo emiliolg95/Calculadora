@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+        <h2 class="display-4">Calculadora de distribuciones de probabilidad</h2>
+        <p class="lead">Calculadora para resolver problemas de distribuciones de probabilidad con variables discretas.</p>
+        <hr class="my-4">
+        <p>Da clic en los botones de abajo para ir a la calculadora de la distribución</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('uniforme') }}" role="button">Distribución Uniforme</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('binomial') }}" role="button">Distribución Binomial</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('hipergeometrica') }}" role="button">Distribución Hipergeométrica</a>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('poisson') }}" role="button">Distribución Poisson</a>
+      </div>
+
+{% endblock %}
